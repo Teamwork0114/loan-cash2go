@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <title>บริการให้คำปรึกษาการเงิน</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      background: #f4f6f8;
+      color: #333;
+    }
+
+    header {
+      background-color: #003366;
+      padding: 15px 20px;
+      color: white;
+    }
+
+    nav a {
+      color: white;
+      margin-right: 15px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 40px auto;
+      background: white;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      color: #003366;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    button {
+      margin-top: 20px;
+      background-color: #0066cc;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #004d99;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: #777;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <nav>
+      <a href="#home">หน้าแรก</a>
+      <a href="#services">บริการ</a>
+      <a href="#contact">ติดต่อเรา</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <h1>บริการให้คำปรึกษาการเงิน</h1>
+    <p>ให้คำปรึกษา วิเคราะห์ และวางแผนทางการเงินสำหรับคุณ</p>
+
+    <form id="consult-form">
+      <label for="name">ชื่อ-สกุล:</label>
+      <input type="text" id="name" name="name" required>
+
+      <label for="phone">เบอร์โทรศัพท์:</label>
+      <input type="tel" id="phone" name="phone" required>
+
+      <label for="message">รายละเอียดเพิ่มเติม:</label>
+      <textarea id="message" name="message" rows="4"></textarea>
+
+      <button type="submit">ส่งข้อมูล</button>
+    </form>
+    <p id="response"></p>
+  </div>
+
+  <footer>
+    &copy; 2025 บริการให้คำปรึกษาการเงิน
+  </footer>
+
+  <script>
+    // เชื่อมกับ Google Apps Script
+    document.getElementById('consult-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const form = e.target;
+      const data = new FormData(form);
+
+      fetch('https://script.google.com/macros/s/PASTE_SCRIPT_URL_HERE/exec', {
+        method: 'POST',
+        body: data
+      })
+      .then(res => res.text())
+      .then(txt => {
+        document.getElementById('response').textContent = txt;
+        form.reset();
+      })
+      .catch(err => {
+        document.getElementById('response').textContent = 'เกิดข้อผิดพลาดในการส่งข้อมูล';
+        console.error(err);
+      });
+    });
+  </script>
+
+</body>
+</html>
